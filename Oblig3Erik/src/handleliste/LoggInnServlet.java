@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import handleliste.PassordUtil;
 
@@ -47,8 +48,20 @@ public class LoggInnServlet extends HttpServlet {
 		String passord = request.getParameter("passord");
 		PassordUtil PU = new PassordUtil();
 		PrintWriter out = response.getWriter();
+		Boolean bool;
+		
 		try {
 			if (PU.sjekkPassord(passord,"4S2XMwORX4W7wXQ4gUWYkRog+22liC2DD/NIuhmnm5nW31gVotvDZpiVuLVwMQVtzkcpq7V6YwU=")) {
+				bool = true;
+				
+				HttpSession sesjon = request.getSession(false);
+	            if (sesjon != null) {
+	                sesjon.invalidate();
+	            }
+	            sesjon = request.getSession(true);
+	            sesjon.setMaxInactiveInterval(10);
+	            sesjon.setAttribute("bool", bool);
+				
 				response.sendRedirect("handle");
 			}
 			
