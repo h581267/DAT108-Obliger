@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:web="http://java.sun.com/xml/ns/javaee" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+  <display-name>Handleliste</display-name>
+	<context-param>
+    	<param-name>passord</param-name>
+    	<param-value>4S2XMwORX4W7wXQ4gUWYkRog+22liC2DD/NIuhmnm5nW31gVotvDZpiVuLVwMQVtzkcpq7V6YwU=</param-value>
+	</context-param>
+</web-app>
