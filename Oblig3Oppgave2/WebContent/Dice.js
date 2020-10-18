@@ -1,12 +1,9 @@
-"use strict"
-
 class Dice {
-	constructor(maxNumber = 6) {
-		this.maxnumber = maxNumber;
-		this.value = null;
+	constructor(value) {
+		this.value = value;
 	}
 
 	roll() {
-		this.value = 1 + Math.trunc(this.maxnumber * Math.random());
+       return (this.value = Math.floor(Math.random() * 6) + 1);
 	}
 }

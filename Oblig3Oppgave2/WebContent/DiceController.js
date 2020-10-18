@@ -1,29 +1,18 @@
 class DiceController {
-
-	constructor(root) {
-		this.root = root;
-
-		this.dice = new Dice();
-		this.rollDice = this.rollDice.bind(this);
+	constructor(root, diceoutput) {
+        this.root = root;
+        this.dice = new Dice();
+        this.diceoutput = diceoutput;
 		this.run = this.run.bind(this);
+		this.rollDice = this.rollDice.bind(this);
 	}
-
 	run() {
-
-		const rootElement = document.getElementById(this.root);
-		const button = document.querySelector("button[data-dicebutton]");
-		button.addEventListener("click", this.rollDice);
-
-		const output = document.querySelector("text[data-diceoutput]");
-		output.textContent = this.dice.value;
-
-	}
+        let button = document.querySelector("button[data-dicebutton]");
+        button.addEventListener("click", this.rollDice, true);
+        let result = document.querySelector("span[data-diceoutput]");
+        result.innerText = this.dice.roll();
+    }
+    rollDice() {
+        this.diceoutput = this.dice.roll();
+    }
 }
-
-function rollDice() {
-	return this.dice.roll();
-}
-
-const controller = new DiceController("root");
-document.addEventListener("DOMContetLoaded", controller.run());
-
