@@ -11,6 +11,22 @@ import javax.persistence.Table;
 
 public class Deltager {
 	
+	public String getFornavn() {
+		return fornavn;
+	}
+
+	public String getEtternavn() {
+		return etternavn;
+	}
+
+	public int getMobilnummer() {
+		return mobilnummer;
+	}
+
+	public String getKjonn() {
+		return kjonn;
+	}
+
 	private String fornavn;
 	private String etternavn;
 	@Id
@@ -26,7 +42,6 @@ public class Deltager {
 		this.mobilnummer = mobilnummer;
 		this.passord = passord;
 		this.kjonn = kjonn.toUpperCase();
-		//this.kjonn = Kjonn.valueOf(kjonn);
 		
 	}
 	
@@ -34,5 +49,9 @@ public class Deltager {
 	
 	public Passord getPassord() {
 		return passord;
+	}
+	
+	public String toString() {
+		return fornavn + " " + etternavn + " " + mobilnummer + " " + kjonn;
 	}
 }

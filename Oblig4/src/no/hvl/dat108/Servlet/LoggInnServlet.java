@@ -57,14 +57,13 @@ public class LoggInnServlet extends HttpServlet {
 			Deltager d = deltagerDAO.hentDeltager(Integer.parseInt(mobil));
 			
 			if (PH.validerMedSalt2(passord, d.getPassord().getSalt(), d.getPassord().getHash())) {
-				System.out.println("Innlogging stemmer");
-				response.sendRedirect("DeltakerlisteServlet");
+				response.sendRedirect("deltagerliste?login");
 			}
 			else {
 				response.sendRedirect(LOGIN_URL + "?invalidUsername");
 			}
 
-		} catch (NullPointerException e) {
+		} catch (NullPointerException | NumberFormatException e) {
 			response.sendRedirect(LOGIN_URL + "?invalidUsername");
 		}
         

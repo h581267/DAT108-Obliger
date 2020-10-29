@@ -34,8 +34,10 @@
     
    
     
-    <form action="/oblig4/paameldingsskjema_MAL.html">
-    <input type="submit" value="Meld deg på!" />
+    <form action="nybruker" class="pure-form pure-form-aligned">
+    	<div class="pure-controls">
+    		<input type="submit" value="Meld deg på!" class="pure-button pure-button-primary"/>
+    	</div>
     </form>
 
 </body>

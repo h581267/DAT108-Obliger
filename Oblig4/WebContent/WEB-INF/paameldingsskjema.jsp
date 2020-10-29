@@ -5,6 +5,8 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+<link rel="stylesheet"
+	href="https://unpkg.com/purecss@1.0.0/build/pure-min.css">
 <title>Påmeldingsskjema</title>
 </head>
 <body>
@@ -14,17 +16,17 @@
             <div class="pure-control-group">
                 <label for="fornavn">Fornavn:</label> <input type="text"
                     name="fornavn" value="" /> 
-                    <font color="red">Ugyldig fornavn</font>
+                    <font color="red">${ffornavn}</font>
             </div>
             <div class="pure-control-group">
                 <label for="etternavn">Etternavn:</label> <input type="text"
                     name="etternavn" value="" /> 
-                    <font color="red">Ugyldig etternavn</font>
+                    <font color="red">${fetternavn}</font>
             </div>
             <div class="pure-control-group">
                 <label for="mobil">Mobil (8 siffer):</label> <input type="text"
                     name="mobil" value="" /> 
-                    <font color="red">Ugyldig mobil</font>
+                    <font color="red">${fmobilnummer}</font>
             </div>
             <div class="pure-control-group">
                 <label for="password">Passord:</label> <input type="password"
@@ -39,11 +41,11 @@
             </div>
             <div class="pure-control-group">
                 <label for="kjonn">Kjønn:</label> <input type="radio" name="kjonn"
-                    value="mann"
+                    value="Mann"
                      />mann
-                <input type="radio" name="kjonn" value="kvinne"
+                <input type="radio" name="kjonn" value="Kvinne"
                      />kvinne
-                <font color="red">Du må oppgi kjonn</font>
+                <font color="red">${fkjonn}</font>
             </div>
             <div class="pure-controls">
                 <button type="submit" class="pure-button pure-button-primary">Meld
