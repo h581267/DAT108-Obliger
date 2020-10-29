@@ -1,4 +1,4 @@
-package no.hvl.dat108;
+package no.hvl.dat108.Servlet;
 
 import static no.hvl.dat108.UrlMappings.LOGOUT_URL;
 

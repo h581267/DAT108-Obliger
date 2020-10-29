@@ -1,4 +1,4 @@
-package no.hvl.dat108;
+package no.hvl.dat108.Servlet;
 
 import java.io.IOException;
 import javax.servlet.ServletException;

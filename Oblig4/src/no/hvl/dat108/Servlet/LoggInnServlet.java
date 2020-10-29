@@ -1,4 +1,4 @@
-package no.hvl.dat108;
+package no.hvl.dat108.Servlet;
 
 import static no.hvl.dat108.UrlMappings.LOGIN_URL;
 import static no.hvl.dat108.UrlMappings.LIST_URL;
@@ -12,6 +12,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import no.hvl.dat108.Deltager;
+import no.hvl.dat108.DeltagerDAO;
+import no.hvl.dat108.Passordhjelper;
 
 @WebServlet("/" + LOGIN_URL)
 public class LoggInnServlet extends HttpServlet {
