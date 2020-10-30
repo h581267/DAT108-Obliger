@@ -58,6 +58,7 @@ public class LoggInnServlet extends HttpServlet {
 			
 			if (PH.validerMedSalt2(passord, d.getPassord().getSalt(), d.getPassord().getHash())) {
 				response.sendRedirect("deltagerliste?login");
+
 			}
 			else {
 				response.sendRedirect(LOGIN_URL + "?invalidUsername");
