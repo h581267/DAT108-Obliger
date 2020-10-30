@@ -25,19 +25,6 @@ public class LoggUtServlet extends HttpServlet {
             sesjon.invalidate();
         }
 
-        response.setContentType("text/html; charset=ISO-8859-1");
-
-        PrintWriter out = response.getWriter();
-
-        out.println("<!DOCTYPE html>");
-        out.println("<html>");
-        out.println("<head>");
-        out.println("<meta charset=\"ISO-8859-1\">");
-        out.println("<title>Logget ut</title>");
-        out.println("</head>");
-        out.println("<body>");
-        out.println("<p>Du er nå logget ut!</p>");
-        out.println("</body>");
-        out.println("</html>");
+        request.getRequestDispatcher("WEB-INF/loggedout.jsp").forward(request, response);
     }
 }

@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import no.hvl.dat108.Deltager;
 import no.hvl.dat108.DeltagerDAO;
@@ -62,6 +63,8 @@ public class NewUserServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+		boolean bool;
 
 		try { //Denne Try catch er qucikfix, bør gjøre det kun med parseInten
 			
@@ -81,6 +84,16 @@ public class NewUserServlet extends HttpServlet {
 				request.setAttribute("etternavn", etternavn);
 				request.setAttribute("mobilnummer", mobilnummer);
 				request.setAttribute("kjonn", kjonn);
+				
+				bool = true;
+
+				HttpSession sesjon = request.getSession(false);
+				if (sesjon != null) {
+					sesjon.invalidate();
+				}
+				sesjon = request.getSession(true);
+				sesjon.setMaxInactiveInterval(60);
+				sesjon.setAttribute("bool", bool);
 
 				request.getRequestDispatcher(CONFIRM_URL).forward(request, response);
 			} else {

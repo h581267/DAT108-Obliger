@@ -31,8 +31,7 @@
             </div>
         </fieldset>
     </form>
-    
-   
+
     
     <form action="nybruker" class="pure-form pure-form-aligned">
     	<div class="pure-controls">

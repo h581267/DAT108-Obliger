@@ -19,56 +19,60 @@ import no.hvl.dat108.Passordhjelper;
 
 @WebServlet("/" + LOGIN_URL)
 public class LoggInnServlet extends HttpServlet {
-    private static final long serialVersionUID = 1L;
-    
-    @EJB
-    private DeltagerDAO deltagerDAO;
-    private Passordhjelper PH;
+	private static final long serialVersionUID = 1L;
 
-    @Override
-    protected void doGet(HttpServletRequest request,
-            HttpServletResponse response) throws ServletException, IOException {
+	@EJB
+	private DeltagerDAO deltagerDAO;
+	private Passordhjelper PH;
 
-        String loginMessage = "";
-        
-        if (request.getParameter("requiresLogin") != null) {
-        	loginMessage = "Forespørselen din krever pålogging. " 
-        			+ "(Du kan ha blitt logget ut automatisk)";
-        	
-        } else if (request.getParameter("invalidUsername") != null) {
-        	loginMessage = "Ugyldig brukernavn eller passord"; 
-        }
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
-        request.setAttribute("loginMessage", loginMessage);
-        
-        request.getRequestDispatcher("WEB-INF/login.jsp")
-        		.forward(request, response);
-    }
+		String loginMessage = "";
 
-    @Override
-    protected void doPost(HttpServletRequest request,
-            HttpServletResponse response) throws ServletException, IOException {
+		if (request.getParameter("requiresLogin") != null) {
+			loginMessage = "Forespørselen din krever pålogging. " + "(Du kan ha blitt logget ut automatisk)";
 
-        String mobil = request.getParameter("mobil");
-        String passord = request.getParameter("passord");
-        
-        try {
-			
+		} else if (request.getParameter("invalidUsername") != null) {
+			loginMessage = "Ugyldig brukernavn eller passord";
+		}
+
+		request.setAttribute("loginMessage", loginMessage);
+
+		request.getRequestDispatcher("WEB-INF/login.jsp").forward(request, response);
+	}
+
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		String mobil = request.getParameter("mobil");
+		String passord = request.getParameter("passord");
+		Boolean bool;
+
+		try {
+
 			Deltager d = deltagerDAO.hentDeltager(Integer.parseInt(mobil));
-			
+
 			if (PH.validerMedSalt2(passord, d.getPassord().getSalt(), d.getPassord().getHash())) {
-				response.sendRedirect("deltagerliste?login");
 
-			}
-			else {
-				response.sendRedirect(LOGIN_URL + "?invalidUsername");
+				bool = true;
+
+				HttpSession sesjon = request.getSession(false);
+				if (sesjon != null) {
+					sesjon.invalidate();
+				}
+				sesjon = request.getSession(true);
+				sesjon.setMaxInactiveInterval(60);
+				sesjon.setAttribute("bool", bool);
+
+				response.sendRedirect("deltagerliste");
 			}
 
-		} catch (NullPointerException | NumberFormatException e) {
+		} catch (NullPointerException | IllegalArgumentException e) {
 			response.sendRedirect(LOGIN_URL + "?invalidUsername");
 		}
-        
 
-    }
+	}
 }
-    

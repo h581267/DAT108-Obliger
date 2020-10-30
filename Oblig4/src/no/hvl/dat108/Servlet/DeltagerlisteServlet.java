@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import no.hvl.dat108.Deltager;
 import no.hvl.dat108.DeltagerDAO;
@@ -22,8 +23,15 @@ public class DeltagerlisteServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+		HttpSession sesjon = request.getSession(false);
+		
+		if (sesjon == null || sesjon.getAttribute("bool") == null || !(boolean) sesjon.getAttribute("bool")) {
+			
+			response.sendRedirect(LOGIN_URL);
+		}
 
-		if (request.getParameter("login") != null) {
+		else {
 
 			List<Deltager> deltagerliste = deltagerDAO.hentAlleDeltagere();
 
@@ -31,10 +39,6 @@ public class DeltagerlisteServlet extends HttpServlet {
 
 			request.getRequestDispatcher("WEB-INF/deltagerliste.jsp").forward(request, response);
 		}
-		else {
-			response.sendRedirect(LOGIN_URL);
-		}
-
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

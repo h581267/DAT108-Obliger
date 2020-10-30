@@ -39,5 +39,12 @@
 		</c:forEach>
 
 	</table>
+	
+	<form action="logout">
+    	<div class="pure-controls">
+    		<input type="submit" value="Logg ut" class="pure-button pure-button-primary"/>
+    	</div>
+    </form>
+    
 </body>
 </html>

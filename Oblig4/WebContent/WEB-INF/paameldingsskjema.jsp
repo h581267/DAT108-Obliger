@@ -31,13 +31,13 @@
             <div class="pure-control-group">
                 <label for="password">Passord:</label> <input type="password"
                     name="passord" value="" /> 
-                    <font color="red">Ugyldig passord</font>
+                    <font color="red">${fpassord}</font>
             </div>
             <div class="pure-control-group">
                 <label for="passordRepetert">Passord repetert:</label> <input
                     type="password" name="passordRepetert"
                     value="" /> 
-                    <font color="red">Passordene må være like</font>
+                    <font color="red">${frpassord}</font>
             </div>
             <div class="pure-control-group">
                 <label for="kjonn">Kjønn:</label> <input type="radio" name="kjonn"
