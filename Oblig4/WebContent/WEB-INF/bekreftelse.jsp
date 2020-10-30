@@ -17,6 +17,10 @@
 		&nbsp;&nbsp;&nbsp;${etternavn}<br />
 		&nbsp;&nbsp;&nbsp;${mobilnummer}<br /> &nbsp;&nbsp;&nbsp;${kjonn}
 	</p>
-	<a href="deltagerliste?login">Gå til deltagerlisten</a>
+	<form action="deltagerliste">
+    	<div class="pure-controls">
+    		<input type="submit" value="Gå til deltagerlisten" class="pure-button pure-button-primary"/>
+    	</div>
+    </form>
 </body>
 </html>
